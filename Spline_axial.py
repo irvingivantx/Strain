@@ -18,7 +18,7 @@ t = 0.281
 Ro=15
 
 #CREATE ARRAY FOR MAX STRAIN VALUES.
-Strain_iterations=10
+Strain_iterations=10000
 step=-1/Strain_iterations
 smoothing_factor=np.arange(0.1,0.01,step,dtype=float)
 max_strain=np.array(range(len(smoothing_factor)),dtype=float)
@@ -57,18 +57,19 @@ for master_counter in range(len(smoothing_factor)):
     max_strain[master_counter]=np.amax(strain_long)
 
 
-fig,ax=plt.subplots()
-# fig, (ax, ax2)=plt.subplots(2,1)
-#ax2.set_yscale('log')
-# ax2.set_xlabel("Smoothing Factor")
-# ax2.set_ylabel("Longitudinal Strain")
-# #ax.scatter(smoothing_factor,max_strain,marker=".",color="blue")
+
+fig, (ax, ax2)=plt.subplots(2,1)
+ax.set_xlabel("Distance [in]")
+ax.set_ylabel("Deflections [in]")
+ax2.set_yscale('log')
+ax2.set_xlabel("Smoothing Factor")
+ax2.set_ylabel("Longitudinal Strain")
+ax2.scatter(smoothing_factor, max_strain,marker=".",color="green")
+ax.plot(x_data_axial,dent_profile_spline,linestyle="-",color="green")
+ax.scatter(x_data_axial,y_data_axial,marker=".",color="black")
+# ax3.plot(x_data_axial,strain_long,linestyle='-')
 # ax.plot(x_data_axial,dent_profile_spline,linestyle="-",color="red")
-# ax2.plot(x_data_axial,dent_profile_spline_deriv,linestyle='-')
-# ax2.plot(x_data_axial,dent_profile_spline_deriv2,linestyle='-')
-# ax3.plot(x_data_axial,strain_long,linestyle='-')`dr4
-ax.plot(x_data_axial,dent_profile_spline,linestyle="-",color="red")
-ax.plot(x_data_axial,dent_profile_spline_deriv,linestyle='-')
-ax.plot(x_data_axial,dent_profile_spline_deriv2,linestyle='-')
-print(x_data_axial)
+# ax.plot(x_data_axial,dent_profile_spline_deriv,linestyle='-')
+# ax.plot(x_data_axial,dent_profile_spline_deriv2,linestyle='-')
+# print(x_data_axial)
 plt.show()
