@@ -18,9 +18,9 @@ t = 0.281
 Ro=15
 
 #CREATE ARRAY FOR MAX STRAIN VALUES.
-Strain_iterations=100
+Strain_iterations=10000
 step=-1/Strain_iterations
-smoothing_factor=np.arange(.8,.05,step,dtype=float)
+smoothing_factor=np.arange(1,.09,step,dtype=float)
 max_strain=np.array(range(len(smoothing_factor)),dtype=float)
 x_data_circumferential_transformed=np.arange(x_data_circumferential[0],x_data_circumferential[len(x_data_circumferential)-1],0.1)
 
@@ -69,7 +69,7 @@ ax.scatter(x_data_circumferential,y_data_circumferential,marker=".",color="blue"
 ax.plot(x_data_circumferential_transformed,dent_profile_spline)
 ax.plot(x_data_circumferential_transformed,dent_profile_spline_deriv)
 ax2.scatter(smoothing_factor,max_strain,marker=".",color="blue")
-ax3.scatter(x_data_circumferential_transformed,strain_long)
+ax3.plot(x_data_circumferential_transformed,strain_long,linestyle="-")
 #LABELS
 ax.set_xlabel("Channel Displacement [in]")
 ax.set_ylabel("Deflections [in]")
